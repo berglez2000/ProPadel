@@ -1,4 +1,65 @@
 ---
-// Redirect to default language
-return Astro.redirect('/sl/');
+// This page will be redirected by Vercel to /sl/
+// This is just a fallback in case the redirect doesn't work
 ---
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Padel - Naslednja Generacija Raketnih Športov</title>
+    <meta http-equiv="refresh" content="0;url=/sl/">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #C8F902 0%, #E8FF4D 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #001011;
+        }
+        .loading-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 16, 17, 0.1);
+            border-left: 4px solid #001011;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="logo">Pro Padel</div>
+        <div class="loading-text">Nalaganje...</div>
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // Fallback redirect
+        window.location.href = '/sl/';
+    </script>
+</body>
+</html>
