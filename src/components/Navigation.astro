@@ -3,14 +3,15 @@ import { getLangFromUrl, useTranslations, languages } from '../i18n/config';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+import logo from '../assets/images/logo.png';
 ---
 
 <nav class="bg-white shadow-lg fixed w-full z-50" x-data="{ mobileMenuOpen: false }">
     <div class="container-max px-4">
-        <div class="flex justify-between items-center py-4">
+        <div class="flex justify-between items-center py-2">
             <!-- Logo -->
             <div class="flex items-center">
-                <img src="logo.svg" alt="Padel Logo" class="h-10">
+                <img src={logo.src} alt="Padel Logo" class="h-16">
             </div>
             
             <!-- Desktop Menu -->

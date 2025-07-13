@@ -18,9 +18,9 @@ const features = await getEntry(`${lang}/features`, 'features');
             </p>
         </div>
         
-        <div class="grid-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {features.data.features.map((feature, index) => (
-                <div class="col-span-12 md:col-span-4" data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
+                <div data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
                     <div class="card p-8 text-center">
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class={`fas fa-${feature.icon} text-3xl text-secondary`}></i>
