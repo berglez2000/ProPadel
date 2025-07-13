@@ -1,0 +1,128 @@
+{
+    "designSystem": {
+      "brand": {
+        "name": "Padel/Tennis",
+        "tone": "Energetic, Professional, Sporty",
+        "imageryStyle": "High-resolution sports action shots, lifestyle images, player-focused"
+      },
+      "colors": {
+        "primary": "#C8F902", 
+        "secondary": "#001011", 
+        "accent": "#FFFFFF", 
+        "textPrimary": "#001011",
+        "textSecondary": "#666666",
+        "background": "#F5F5F5",
+        "cardBackground": "#FFFFFF",
+        "buttonText": "#001011"
+      },
+      "typography": {
+        "fontFamily": ["'Poppins'", "sans-serif"],
+        "heading": {
+          "fontWeight": 700,
+          "lineHeight": 1.2,
+          "sizes": {
+            "h1": "48px",
+            "h2": "36px",
+            "h3": "28px",
+            "h4": "22px"
+          }
+        },
+        "body": {
+          "fontWeight": 400,
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        },
+        "buttons": {
+          "uppercase": true,
+          "fontWeight": 600
+        }
+      },
+      "layout": {
+        "grid": {
+          "columns": 12,
+          "gutter": "24px"
+        },
+        "sectionSpacing": {
+          "paddingTopBottom": "80px",
+          "paddingSides": "16px"
+        },
+        "containerMaxWidth": "1200px"
+      },
+      "components": {
+        "navbar": {
+          "type": "horizontal",
+          "logoPosition": "left",
+          "menuPosition": "right",
+          "button": {
+            "style": "rounded",
+            "backgroundColor": "#C8F902",
+            "textColor": "#001011"
+          }
+        },
+        "heroSection": {
+          "layout": "2-column",
+          "mediaPosition": "right",
+          "titleStyle": "h1",
+          "button": "primary"
+        },
+        "card": {
+          "borderRadius": "8px",
+          "shadow": true,
+          "padding": "24px",
+          "background": "#FFFFFF"
+        },
+        "button": {
+          "variants": {
+            "primary": {
+              "background": "#C8F902",
+              "color": "#001011",
+              "borderRadius": "9999px"
+            },
+            "secondary": {
+              "background": "transparent",
+              "border": "2px solid #C8F902",
+              "color": "#001011"
+            }
+          }
+        },
+        "iconFeatures": {
+          "layout": "horizontal",
+          "iconShape": "circle",
+          "labelStyle": "bold"
+        },
+        "pricingTable": {
+          "background": "#FFFFFF",
+          "highlightColor": "#C8F902",
+          "columns": 3
+        },
+        "testimonial": {
+          "layout": "2-column",
+          "imageLeft": true,
+          "quoteStyle": "italic"
+        },
+        "footer": {
+          "background": "#001011",
+          "textColor": "#FFFFFF",
+          "columns": 3,
+          "linksStyle": "minimal"
+        }
+      },
+      "animations": {
+        "scrollReveal": true,
+        "hoverEffects": {
+          "buttons": "scale-up",
+          "images": "zoom-on-hover"
+        }
+      },
+      "icons": {
+        "style": "line-based",
+        "color": "#C8F902"
+      },
+      "formElements": {
+        "inputStyle": "minimal",
+        "buttonStyle": "primary",
+        "layout": "vertical"
+      }
+    }
+  }
+  

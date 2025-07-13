@@ -1,0 +1,60 @@
+{
+  "$ref": "#/definitions/rules",
+  "definitions": {
+    "rules": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "basicRules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "courtDimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "courtImage": {
+          "type": "string"
+        },
+        "courtImageAlt": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "basicRules",
+        "courtDimensions",
+        "courtImage",
+        "courtImageAlt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

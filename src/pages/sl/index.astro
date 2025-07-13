@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Hero from '../../components/Hero.astro';
+import Features from '../../components/Features.astro';
+import Rules from '../../components/Rules.astro';
+import Equipment from '../../components/Equipment.astro';
+import Playgrounds from '../../components/Playgrounds.astro';
+import Footer from '../../components/Footer.astro';
+import WaveDivider from '../../components/WaveDivider.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Padel - Naslednja Generacija Raketnih Športov" lang={lang}>
+  <Navigation />
+  <Hero />
+  <Features />
+  <Rules />
+  <Equipment />
+  <Playgrounds />
+  <Footer />
+</Layout> 

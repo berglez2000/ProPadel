@@ -1,0 +1,42 @@
+---
+import { getEntry } from 'astro:content';
+import WaveDivider from './WaveDivider.astro';
+import { getLangFromUrl } from '../i18n/config';
+
+// Get current language
+const lang = getLangFromUrl(Astro.url);
+
+// Get rules content from markdown based on language
+const rules = await getEntry(`${lang}/rules`, 'rules');
+---
+
+<section id="rules" class="section-padding padel-blue-bg text-white relative py-24">
+    <div class="absolute top-0 left-0 right-0">
+        <WaveDivider direction="up" color="#FFFFFF" />
+    </div>
+    <div class="container-max">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-white mb-4">{rules.data.title}</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                {rules.data.subtitle}
+            </p>
+        </div>
+        
+        <div class="grid-12">
+            {rules.data.rules.map((rule, index) => (
+                <div class="col-span-12 md:col-span-6 lg:col-span-3" data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
+                    <div class="card p-8 text-center text-black">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class={`fas fa-${rule.icon} text-3xl text-secondary`}></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-secondary mb-4">{rule.title}</h3>
+                        <p class="text-gray-600">{rule.description}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+        <WaveDivider direction="down" color="#FFFFFF" />
+    </div>
+</section>

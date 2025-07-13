@@ -1,0 +1,104 @@
+---
+import { getEntry } from 'astro:content';
+import WaveDivider from './WaveDivider.astro';
+import { getLangFromUrl } from '../i18n/config';
+
+// Get current language
+const lang = getLangFromUrl(Astro.url);
+
+// Get playgrounds content from markdown based on language
+const playgrounds = await getEntry(`${lang}/playgrounds`, 'playgrounds');
+
+// Generate filters dynamically from playgrounds data
+const generateFilters = (playgrounds: any[]) => {
+  const filterMap = new Map<string, { name: string; value: string; count: number }>();
+  
+  // Add "All Locations" filter
+  filterMap.set('all', {
+    name: 'All Locations',
+    value: 'all',
+    count: playgrounds.length
+  });
+  
+  // Generate filters from unique location cities
+  playgrounds.forEach(playground => {
+    const cityName = playground.location.split(',')[0].trim(); // Extract city name from location
+    
+    if (!filterMap.has(cityName.toLowerCase())) {
+      filterMap.set(cityName.toLowerCase(), {
+        name: cityName,
+        value: cityName.toLowerCase(),
+        count: 0
+      });
+    }
+    
+    // Increment count for this filter
+    const filter = filterMap.get(cityName.toLowerCase())!;
+    filter.count++;
+  });
+  
+  return Array.from(filterMap.values());
+};
+
+const filters = generateFilters(playgrounds.data.playgrounds);
+---
+
+<section id="playgrounds" class="section-padding padel-blue-gradient text-white relative" x-data="{ activeFilter: 'all' }">
+    <div class="absolute top-0 left-0 right-0">
+        <WaveDivider direction="up" color="#FFFFFF" />
+    </div>
+    <div class="container-max">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-white mb-4">{playgrounds.data.title}</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                {playgrounds.data.subtitle}
+            </p>
+        </div>
+        
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+            {filters.map((filter) => (
+                <button @click={`activeFilter = '${filter.value}'`} 
+                        :class={`activeFilter === '${filter.value}' ? 'bg-primary text-secondary' : 'bg-white text-secondary hover:bg-gray-100'`}
+                        class="px-6 py-3 rounded-full font-semibold transition-colors text-blue-400">
+                    {filter.name} ({filter.count})
+                </button>
+            ))}
+        </div>
+        
+        <!-- Court Cards Grid -->
+        <div class="grid-12">
+            {playgrounds.data.playgrounds.map((playground, index) => {
+                const cityName = playground.location.split(',')[0].trim().toLowerCase();
+                return (
+                    <div class="col-span-12 md:col-span-6 lg:col-span-4" 
+                         x-show={`activeFilter === 'all' || activeFilter === '${cityName}'`}
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 transform scale-95"
+                         x-transition:enter-end="opacity-100 transform scale-100"
+                         data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
+                        <div class="card overflow-hidden h-full">
+                            <div class="aspect-video bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                                <i class={`fas fa-${playground.icon} text-6xl text-white opacity-50`}></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-secondary mb-2">{playground.title}</h3>
+                                <p class="text-gray-600 mb-3">{playground.location}</p>
+                                <p class="text-gray-600 text-sm mb-4">{playground.description}</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-500">
+                                        <i class={`fas fa-${playground.icon} mr-1`}></i>
+                                        Padel Court
+                                    </span>
+                                    <a href="#" class="text-blue-400 hover:text-blue-600 transition-colors">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>View on Map
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    </div>
+</section>

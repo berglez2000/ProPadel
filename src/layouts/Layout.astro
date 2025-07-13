@@ -1,0 +1,177 @@
+---
+export interface Props {
+  title: string;
+  lang?: string;
+}
+
+const { title, lang = 'en' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Padel - The Next Generation Sport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+      <!-- Load AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="font-sans">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: #C8F902;
+    --secondary: #001011;
+    --accent: #FFFFFF;
+    --padel-blue: #1B4BA0;
+    --text-primary: #001011;
+    --text-secondary: #666666;
+    --background: #F5F5F5;
+    --card-background: #FFFFFF;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(200, 249, 2, 0.3);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--padel-blue);
+    color: var(--padel-blue);
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .btn-secondary:hover {
+    background: var(--padel-blue);
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+  
+  .btn-blue {
+    background-color: var(--padel-blue);
+    color: var(--accent);
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .btn-blue:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(27, 75, 160, 0.3);
+  }
+  
+  .card {
+    background: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, #E8FF4D 100%);
+  }
+  
+  .padel-blue-bg {
+    background-color: var(--padel-blue);
+  }
+  
+  .padel-blue-gradient {
+    background: linear-gradient(135deg, var(--padel-blue) 0%, #2A5BC0 100%);
+  }
+  
+  .section-padding {
+    padding: 80px 16px;
+  }
+  
+  .container-max {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-12 {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .section-padding {
+      padding: 80px 16px;
+    }
+  }
+</style> 
+
+<script>
+  const script = document.createElement('script');
+    script.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
+    script.onload = function() {
+      // Initialize AOS after script loads
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false,
+          offset: 50,
+          delay: 0,
+          disable: 'mobile'
+        });
+      }
+    };
+    document.head.appendChild(script);
+</script>

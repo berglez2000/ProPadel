@@ -1,0 +1,70 @@
+{
+  "$ref": "#/definitions/playgrounds",
+  "definitions": {
+    "playgrounds": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "courts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "courts": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "string"
+              },
+              "mapUrl": {
+                "type": "string"
+              },
+              "gradient": {
+                "type": "string"
+              },
+              "backgroundImage": {
+                "type": "string"
+              },
+              "backgroundImageAlt": {
+                "type": "string"
+              },
+              "websiteUrl": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "location",
+              "courts",
+              "filter",
+              "mapUrl",
+              "gradient"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "courts"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

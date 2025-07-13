@@ -1,0 +1,44 @@
+---
+import { getEntry } from 'astro:content';
+import WaveDivider from './WaveDivider.astro';
+import TypewriterText from './TypewriterText.astro';
+import { getLangFromUrl } from '../i18n/config';
+
+// Get current language
+const lang = getLangFromUrl(Astro.url);
+
+// Get hero content from markdown based on language
+const hero = await getEntry(`${lang}/hero`, 'hero');
+---
+
+<section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 opacity-90"></div>
+    <div class="absolute inset-0 bg-gradient-to-tl from-blue-900 via-indigo-600 to-purple-700 opacity-30"></div>
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="container-max px-4 py-24 relative z-10">
+        <div class="grid-12 items-center">
+            <div class="col-span-12 lg:col-span-6" data-aos="fade-right">
+                <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    <TypewriterText text={hero.data.title} speed={80} />
+                </h1>
+                <p class="text-xl text-white mb-8 leading-relaxed">
+                    {hero.data.subtitle}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="btn-primary px-8 py-4 text-lg">{hero.data.primaryButton}</button>
+                    <button class="btn-blue px-8 py-4 text-lg">{hero.data.secondaryButton}</button>
+                </div>
+            </div>
+            <div class="col-span-12 lg:col-span-6" data-aos="fade-left">
+                <div class="relative">
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl">
+                        <img src={hero.data.image} alt={hero.data.imageAlt} class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+        <WaveDivider direction="down" color="#FFFFFF" />
+    </div>
+</section>

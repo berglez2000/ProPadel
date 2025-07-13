@@ -1,0 +1,65 @@
+---
+import { getLangFromUrl, useTranslations, languages } from '../i18n/config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<nav class="bg-white shadow-lg fixed w-full z-50" x-data="{ mobileMenuOpen: false }">
+    <div class="container-max px-4">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="logo.svg" alt="Padel Logo" class="h-10">
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-secondary hover:text-primary transition-colors font-medium">{t('nav.home')}</a>
+                <a href="#rules" class="text-secondary hover:text-primary transition-colors font-medium">{t('nav.rules')}</a>
+                <a href="#equipment" class="text-secondary hover:text-primary transition-colors font-medium">{t('nav.equipment')}</a>
+                <a href="#playgrounds" class="text-secondary hover:text-primary transition-colors font-medium">{t('nav.playgrounds')}</a>
+                
+                <!-- Language Switcher -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex items-center space-x-1 text-secondary hover:text-primary transition-colors font-medium">
+                        <span>{languages[lang]}</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+                    <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50">
+                        {Object.entries(languages).map(([code, name]) => (
+                            <a href={`/${code}/`} class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-gray-50">
+                                {name}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-secondary hover:text-primary">{t('nav.home')}</a>
+                <a href="#rules" class="block px-3 py-2 text-secondary hover:text-primary">{t('nav.rules')}</a>
+                <a href="#equipment" class="block px-3 py-2 text-secondary hover:text-primary">{t('nav.equipment')}</a>
+                <a href="#playgrounds" class="block px-3 py-2 text-secondary hover:text-primary">{t('nav.playgrounds')}</a>
+                
+                <!-- Mobile Language Switcher -->
+                <div class="border-t pt-2 mt-2">
+                    <div class="px-3 py-2 text-sm text-gray-500">{t('lang.switch')}</div>
+                    {Object.entries(languages).map(([code, name]) => (
+                        <a href={`/${code}/`} class="block px-3 py-2 text-secondary hover:text-primary">
+                            {name}
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
